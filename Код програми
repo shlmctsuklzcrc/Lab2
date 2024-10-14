@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <windows.h>
+
+
+int NSD(int a,int b){
+    while(b != 0){
+        int temp = b;
+        b = a % b ;
+        a = temp;
+        }
+    return a ;
+    }
+
+int NSK(int a,int b){
+
+    return a*b/NSD(a,b);
+}
+
+int NSKArray(int arr[],int n){
+    int result = arr[0];
+    for (int i = 1; i < n; i++) {
+        result = NSK(result, arr[i]);
+    }
+    return result;
+}
+
+int main()
+{
+    SetConsoleOutputCP(1251);
+    SetConsoleCP(1251);
+    int n;
+    printf("Введіть кількість чисел\n");
+    scanf("%d",&n);
+    if(n >=2 && n <= 20){
+        printf("Введіть числа\n");
+        int arr[n];
+        for(int i = 0;i < n;i++){
+            scanf("%d",&arr[i]);
+        }
+        int result = NSKArray(arr,n);
+        printf("НСК введених чисел : %d\n",result);
+    }else printf("Введіть числа в діапазоні від 2 до 20");
+
+    return 0;
+}
